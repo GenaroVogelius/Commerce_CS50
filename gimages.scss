@@ -23,7 +23,11 @@
 
         #barra_nav {
             padding-right: 1rem;
-            gap: 0.5rem;
+            gap: 1rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            margin-bottom: 1rem;
         }
 
     }
@@ -34,6 +38,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin-top: 2rem;
 
         .logo {
             max-width: 50%;
