@@ -22,13 +22,13 @@
         grid-area: top;
         grid-column: 1/-1;
         display: flex;
-        justify-content: space-between;
+        // justify-content: space-between;
         align-items: baseline;
         max-height: 4rem;
 
         .logo {
             width: 5rem;
-            margin-left: 2rem;
+            margin-left: 0.5rem;
         }
 
         #barra_nav {
@@ -171,10 +171,27 @@
 }
 
 
-
-
-
-
 #footer {
     grid-area: footer;
+}
+
+
+
+@media (min-width: 100px) {
+    .top {
+
+        #navbar {
+            padding-left: 3%;
+        }
+
+    }
+}
+
+
+
+@media (min-width: 126px) {
+    .top {
+        justify-content: space-between;
+        margin-left: 2rem;
+    }
 }
