@@ -1,11 +1,10 @@
 /* sass --watch advance.scss:advance.css */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: arial, sans-serif;
-}
+// default styles:
+@forward "_default";
+
+// top style:
+@forward "_top.scss";
 
 #layout {
     display: grid;
@@ -24,7 +23,7 @@
         grid-column: 1/-1;
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: baseline;
         max-height: 4rem;
 
         .logo {

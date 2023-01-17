@@ -1,3 +1,29 @@
+.top {
+  grid-area: top;
+  grid-column: 1/-1;
+}
+.top #barra_nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+}
+
+@media (min-width: 304px) {
+  #layout .top .container-fluid {
+    display: flex;
+    justify-content: flex-end;
+  }
+  #layout .top .container-fluid #barra_nav {
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+}
 /* sass --watch gimages.scss:gimages.css */
 * {
   margin: 0;
@@ -12,18 +38,6 @@
   grid-template-areas: "top" "center" "footer";
   min-height: 100vh;
 }
-#layout .top {
-  grid-area: top;
-  grid-column: 1/-1;
-}
-#layout .top #barra_nav {
-  padding-right: 1rem;
-  gap: 1rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  margin-bottom: 1rem;
-}
 #layout #center {
   grid-area: center;
   grid-column: 2;
@@ -34,22 +48,16 @@
 }
 #layout #center .logo {
   max-width: 50%;
+  margin-top: 3rem;
 }
-#layout #footer {
-  grid-area: footer;
-}
-#layout .formulario {
+#layout #center .formulario {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
   flex-direction: column;
 }
-#layout .formulario .submits {
-  display: flex;
-  gap: 0.5rem;
-}
-#layout .formulario .input-text {
+#layout #center .formulario .input-text {
   width: 90%;
   border-radius: 24px;
   height: 2rem;
@@ -61,15 +69,19 @@
   max-width: 584px;
   margin-top: 2rem;
 }
-#layout .formulario .input-text:hover {
+#layout #center .formulario .input-text:hover {
   background-color: #fff;
   box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
   border-color: rgba(223, 225, 229, 0);
 }
-#layout .formulario .input-text:focus-visible {
+#layout #center .formulario .input-text:focus-visible {
   outline: #dfe1e5;
 }
-#layout .formulario .input-submit {
+#layout #center .formulario .submits {
+  display: flex;
+  gap: 0.5rem;
+}
+#layout #center .formulario .submits .input-submit {
   background-color: #f8f9fa;
   border: 1px solid #f8f9fa;
   border-radius: 4px;
@@ -85,12 +97,15 @@
   cursor: pointer;
   user-select: none;
 }
-#layout .formulario .input-submit:hover {
+#layout #center .formulario .submits .input-submit:hover {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   background-color: #f8f9fa;
   border: 1px solid #dadce0;
   border: 1px solid #dadce0;
   color: #202124;
+}
+#layout #footer {
+  grid-area: footer;
 }
 
 /*# sourceMappingURL=gimages.css.map */

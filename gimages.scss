@@ -1,5 +1,8 @@
 /* sass --watch gimages.scss:gimages.css */
 
+
+@forward "_top.scss";
+
 * {
     margin: 0;
     padding: 0;
@@ -16,22 +19,6 @@
         "footer";
     min-height: 100vh;
 
-
-    .top {
-        grid-area: top;
-        grid-column: 1/-1;
-
-        #barra_nav {
-            padding-right: 1rem;
-            gap: 1rem;
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-end;
-            margin-bottom: 1rem;
-        }
-
-    }
-
     #center {
         grid-area: center;
         grid-column: 2;
@@ -42,7 +29,74 @@
 
         .logo {
             max-width: 50%;
+            margin-top: 3rem;
 
+        }
+
+        .formulario {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            flex-direction: column;
+
+            .input-text {
+                width: 90%;
+                border-radius: 24px;
+                height: 2rem;
+                padding: 1rem;
+                background: #fff;
+                border: 1px solid #dfe1e5;
+                box-shadow: none;
+                margin: 0 auto;
+                max-width: 584px;
+                margin-top: 2rem;
+
+                &:hover {
+                    background-color: #fff;
+                    box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
+                    border-color: rgba(223, 225, 229, 0);
+                }
+
+
+                &:focus-visible {
+                    outline: #dfe1e5;
+                }
+
+            }
+
+
+            .submits {
+                display: flex;
+                gap: 0.5rem;
+
+                .input-submit {
+                    background-color: #f8f9fa;
+                    border: 1px solid #f8f9fa;
+                    border-radius: 4px;
+                    color: #3c4043;
+                    font-family: arial, sans-serif;
+                    font-size: 14px;
+                    margin: 11px 4px;
+                    padding: 0 16px;
+                    line-height: 27px;
+                    height: 36px;
+                    min-width: 54px;
+                    text-align: center;
+                    cursor: pointer;
+                    user-select: none;
+
+                    &:hover {
+                        box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
+                        background-color: #f8f9fa;
+                        border: 1px solid #dadce0;
+                        border: 1px solid #dadce0;
+                        color: #202124;
+                    }
+
+                }
+
+            }
         }
     }
 
@@ -51,69 +105,5 @@
     }
 
 
-    .formulario {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
-        flex-direction: column;
 
-
-        .submits {
-            display: flex;
-            gap: 0.5rem;
-
-        }
-
-        .input-text {
-            width: 90%;
-            border-radius: 24px;
-            height: 2rem;
-            padding: 1rem;
-            background: #fff;
-            border: 1px solid #dfe1e5;
-            box-shadow: none;
-            margin: 0 auto;
-            max-width: 584px;
-            margin-top: 2rem;
-
-            &:hover {
-                background-color: #fff;
-                box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
-                border-color: rgba(223, 225, 229, 0);
-            }
-
-
-            &:focus-visible {
-                outline: #dfe1e5;
-            }
-
-        }
-
-        .input-submit {
-            background-color: #f8f9fa;
-            border: 1px solid #f8f9fa;
-            border-radius: 4px;
-            color: #3c4043;
-            font-family: arial, sans-serif;
-            font-size: 14px;
-            margin: 11px 4px;
-            padding: 0 16px;
-            line-height: 27px;
-            height: 36px;
-            min-width: 54px;
-            text-align: center;
-            cursor: pointer;
-            user-select: none;
-
-            &:hover {
-                box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
-                background-color: #f8f9fa;
-                border: 1px solid #dadce0;
-                border: 1px solid #dadce0;
-                color: #202124;
-            }
-
-        }
-    }
 }

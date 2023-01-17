@@ -1,0 +1,31 @@
+.top {
+    grid-area: top;
+    grid-column: 1/-1;
+
+    #barra_nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-content: center;
+        align-items: center;
+    }
+}
+
+
+// 353
+@media (min-width: 304px) {
+    #layout .top .container-fluid {
+        display: flex;
+        justify-content: flex-end;
+
+        #barra_nav {
+            display: flex;
+            flex-direction: row;
+            align-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+    }
+}
