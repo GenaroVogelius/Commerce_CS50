@@ -5,32 +5,6 @@
   font-family: arial, sans-serif;
 }
 
-.top {
-  grid-area: top;
-  grid-column: 1/-1;
-}
-.top #barra_nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap;
-  align-content: center;
-  align-items: center;
-}
-
-@media (min-width: 304px) {
-  #layout .top .container-fluid {
-    display: flex;
-    justify-content: flex-end;
-  }
-  #layout .top .container-fluid #barra_nav {
-    display: flex;
-    flex-direction: row;
-    align-content: space-between;
-    align-items: center;
-    gap: 1rem;
-  }
-}
 /* sass --watch advance.scss:advance.css */
 #layout {
   display: grid;

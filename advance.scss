@@ -3,9 +3,6 @@
 // default styles:
 @forward "_default";
 
-// top style:
-@forward "_top.scss";
-
 #layout {
     display: grid;
     grid-template-rows: 4rem 3rem auto auto;
