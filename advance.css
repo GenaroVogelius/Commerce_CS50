@@ -145,6 +145,9 @@
     text-align: center;
     margin-left: 5rem;
   }
+  #layout .submit .input-submit {
+    margin-left: 1rem;
+  }
 }
 
 /*# sourceMappingURL=advance.css.map */
