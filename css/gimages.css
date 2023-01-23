@@ -1,3 +1,10 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: arial, sans-serif;
+}
+
 .top {
   grid-area: top;
   grid-column: 1/-1;
@@ -37,6 +44,7 @@
   grid-template-columns: auto auto auto;
   grid-template-areas: "top" "center" "footer";
   min-height: 100vh;
+  overflow: hidden;
 }
 #layout #center {
   grid-area: center;
@@ -49,6 +57,7 @@
 #layout #center .logo {
   max-width: 50%;
   margin-top: 3rem;
+  margin-bottom: 5%;
 }
 #layout #center .formulario {
   display: flex;
@@ -67,7 +76,6 @@
   box-shadow: none;
   margin: 0 auto;
   max-width: 584px;
-  margin-top: 2rem;
 }
 #layout #center .formulario .input-text:hover {
   background-color: #fff;

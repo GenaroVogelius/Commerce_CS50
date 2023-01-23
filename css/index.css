@@ -31,13 +31,14 @@
     gap: 1rem;
   }
 }
-/* sass --watch index.scss:index.css */
+/* sass --watch scss/index.scss:css/index.css */
 #layout {
   display: grid;
   grid-template-rows: 20% auto 20%;
   grid-template-columns: auto auto auto;
   grid-template-areas: "top" "center" "footer";
   min-height: 100vh;
+  overflow: hidden;
 }
 #layout #center {
   grid-area: center;
@@ -47,7 +48,7 @@
   align-items: center;
 }
 #layout #center .logo {
-  max-width: 50%;
+  max-width: 60%;
   margin-top: 2rem;
 }
 #layout #center .formulario {

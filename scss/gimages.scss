@@ -1,11 +1,15 @@
-/* sass --watch index.scss:index.css */
+/* sass --watch gimages.scss:gimages.css */
 
-// default styles:
 @forward "_default";
-
-// top style:
 @forward "_top.scss";
 
+@use "_mixins" as m;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 #layout {
     display: grid;
@@ -16,7 +20,7 @@
         "center"
         "footer";
     min-height: 100vh;
-
+    overflow: hidden;
 
     #center {
         grid-area: center;
@@ -24,10 +28,12 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin-top: 2rem;
 
         .logo {
             max-width: 50%;
-            margin-top: 2rem;
+            margin-top: 3rem;
+            margin-bottom: 5%;
 
         }
 
@@ -39,26 +45,7 @@
             flex-direction: column;
 
             .input-text {
-                width: 90%;
-                border-radius: 24px;
-                height: 2rem;
-                padding: 1rem;
-                background: #fff;
-                border: 1px solid #dfe1e5;
-                box-shadow: none;
-                margin: 0 auto;
-                max-width: 584px;
-
-                &:hover {
-                    background-color: #fff;
-                    box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
-                    border-color: rgba(223, 225, 229, 0);
-                }
-
-                &:focus-visible {
-                    outline: #dfe1e5;
-                }
-
+                @include m.texto;
             }
 
 
@@ -89,17 +76,17 @@
                         border: 1px solid #dadce0;
                         color: #202124;
                     }
+
                 }
 
             }
-
         }
-
-
     }
 
     #footer {
         grid-area: footer;
     }
+
+
 
 }

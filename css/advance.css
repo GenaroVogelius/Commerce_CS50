@@ -5,13 +5,14 @@
   font-family: arial, sans-serif;
 }
 
-/* sass --watch advance.scss:advance.css */
+/* sass --watch scss/advance.scss:css/advance.css */
 #layout {
   display: grid;
   grid-template-rows: 4rem 3rem auto auto;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: auto auto auto;
   grid-template-areas: "top" "semi-top" "center" "footer";
   min-height: 100vh;
+  overflow: hidden;
 }
 #layout .top {
   grid-area: top;
@@ -19,42 +20,46 @@
   display: flex;
   align-items: baseline;
   max-height: 4rem;
+  justify-content: center;
 }
 #layout .top .logo {
   width: 5rem;
-  margin-left: 0.5rem;
+  margin-left: 1rem;
+  display: none;
 }
-#layout .top #barra_nav {
-  padding-right: 1rem;
+#layout .top #navbar {
+  padding-left: 1rem;
+  margin-right: 1rem;
+}
+#layout .top #navbar #barra_nav {
   gap: 1rem;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  margin-bottom: 1rem;
 }
-#layout #advance {
+#layout .advanceT {
   grid-area: semi-top;
-}
-#layout #advance .advanceT {
-  margin-left: 2rem;
-  margin-top: 1rem;
+  grid-column: 1/-1;
+  margin-top: 2rem;
   color: #d93025;
   max-width: 18rem;
   height: 100%;
   font-size: 20px;
+  text-align: left;
+  padding-left: 1rem;
 }
-#layout #center {
+
+#center {
   grid-area: center;
   grid-column: 1/-1;
 }
-#layout #center .formulario .row {
+#center .formulario .row {
   margin-bottom: 1rem;
 }
-#layout #center .formulario .row #encuentra {
-  margin-left: 2rem;
-  margin-right: 8rem;
+#center .formulario .row #encuentra .title {
+  padding-left: 1rem;
 }
-#layout #center .formulario .row #encuentra .title {
+#center .formulario .row #encuentra .title {
   margin-top: 1rem;
   font-weight: inherit;
   font-style: inherit;
@@ -62,24 +67,28 @@
   vertical-align: baseline;
   text-decoration: none;
 }
-#layout #center .formulario .row #encuentra hr {
-  margin: 0;
+#center .formulario .row #encuentra hr {
+  width: 100%;
 }
-#layout #center .formulario .container-fluid .row {
+#center .formulario .container-fluid .row {
   margin-bottom: 1rem;
 }
-#layout #center .formulario .container-fluid .row .col-2 {
-  margin-left: 2rem;
+#center .formulario .container-fluid .row .col-2 {
+  margin-left: 1rem;
   padding: 0;
 }
-#layout #center .formulario .container-fluid .row .col-2 .subtitle {
+#center .formulario .container-fluid .row .col-2 .subtitle {
   font-weight: inherit;
   font-style: inherit;
   font-size: 100%;
   vertical-align: baseline;
   text-decoration: none;
 }
-#layout #center .formulario .container-fluid .input-text {
+#center .formulario .container-fluid .row .col {
+  display: flex;
+  align-items: center;
+}
+#center .formulario .input-text {
   font-weight: inherit;
   font-style: inherit;
   font-size: 100%;
@@ -91,19 +100,20 @@
   font-size: 13px;
   height: 25px;
   padding: 1px 8px;
-  width: 31rem;
-  margin-left: 1rem;
+  max-width: fit-content;
 }
-#layout #center .formulario .container-fluid .input-text:focus {
+#center .formulario .input-text:focus {
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
   border: 1px solid #4d90fe;
   outline: none;
 }
-#layout .submit {
-  text-align: center;
-  margin-left: 4rem;
+
+.submit {
+  display: flex;
+  justify-content: flex-end;
+  max-width: 92%;
 }
-#layout .submit .input-submit {
+.submit .input-submit {
   user-select: none;
   line-height: 100%;
   height: 30px;
@@ -120,7 +130,7 @@
   text-align: center;
   white-space: nowrap;
 }
-#layout .submit .input-submit:hover {
+.submit .input-submit:hover {
   background-color: #357ae8;
   background-image: -webkit-linear-gradient(top, #4d90fe, #357ae8);
   border: 1px solid #2f5bb7;
@@ -131,22 +141,20 @@
   grid-area: footer;
 }
 
-@media (min-width: 100px) {
-  .top #navbar {
-    padding-left: 3%;
+@media (min-width: 278px) {
+  #center .formulario .input-text {
+    max-width: none;
+    width: 90%;
   }
 }
-@media (min-width: 126px) {
-  .top {
+@media (min-width: 410px) {
+  #layout .top .logo {
+    display: -webkit-inline-box;
+  }
+}
+@media (min-width: 472px) {
+  #layout .top {
     justify-content: space-between;
-    margin-left: 2rem;
-  }
-  #layout .submit {
-    text-align: center;
-    margin-left: 5rem;
-  }
-  #layout .submit .input-submit {
-    margin-left: 1rem;
   }
 }
 

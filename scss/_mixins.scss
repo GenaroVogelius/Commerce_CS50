@@ -1,0 +1,21 @@
+@mixin texto {
+    width: 90%;
+    border-radius: 24px;
+    height: 2rem;
+    padding: 1rem;
+    background: #fff;
+    border: 1px solid #dfe1e5;
+    box-shadow: none;
+    margin: 0 auto;
+    max-width: 584px;
+
+    &:hover {
+        background-color: #fff;
+        box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
+        border-color: rgba(223, 225, 229, 0);
+    }
+
+    &:focus-visible {
+        outline: #dfe1e5;
+    }
+}
