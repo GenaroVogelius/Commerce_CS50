@@ -1,0 +1,258 @@
+{% extends "auctions/layout.html" %}
+{% block body %}
+{% comment %} ! de producto vos estas recibiendo el objeto, el cual no es iterable {% endcomment %}
+{% comment %} !en comentarios vos estas recibiendo un query set el cual es iterable, al hacer un bucle for en
+comentarios lo que haces es iterar ese query set por cada objeto que tiene. {% endcomment %}
+
+<h2 class="mt-3" >You are watching the product {{producto.producto}}</h2>
+
+<div class="container-fluid">
+  {% if disabled == "disabled" %}
+  <div class="alert alert-danger" role="alert">
+    You are not signing in, you cannot <strong>add the item to your watchlist, place a bid and make a comment</strong>,
+    click in here to <a href="{% url 'login' %}" class="alert-link">sign in</a>
+  </div>
+  {%endif%}
+  {%if message%}
+  <div class="alert alert-danger" role="alert">
+    {{message}}
+  </div>
+  {%endif%}
+  <div class="card mb-3 mt-2" style="max-width: auto">
+    <div class="container-fluid">
+      <div class="row g-4">
+        <div class="col md-6">
+          <form action="{% url 'watchList' producto.id %}" method="post">
+            {% csrf_token %}
+            <div class="d-grid gap-2 mt-2 mb-2">
+              {%if is_in_watchlist == True %}
+              <button type="submit" class="btn btn-outline-secondary {{disabled}}">Remove from Watch List</button>
+              {% else %}
+              <button type="submit" class="btn btn-{{outline}}secondary {{disabled}}">Add to Watch List</button>
+              {%endif%}
+            </div>
+          </form>
+
+          <div id="carouselExampleIndicators" class="carousel carousel-dark slide" data-bs-ride="true">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+              {%if producto.imagen2 %}
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+              {%endif%}
+              {%if producto.imagen3 %}
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+              {%endif%}
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                {%if producto.imagen %}
+                <img src="{{producto.imagen}}" class="d-block w-100" alt="imagen">
+                {%else%}
+                <img
+                  src="https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1902/pavelstasevich190200120/ 124934975-no-hay-icono-de-imagen-disponible-vector-plano.jpg?ver=6"
+                  class="card-img-top" alt="imagen">
+                {%endif%}
+              </div>
+              {%if producto.imagen2 %}
+              <div class="carousel-item">
+                <img src="{{producto.imagen2}}" class="d-block w-100" alt="...">
+              </div>
+              {%endif%}
+              {%if producto.imagen3 %}
+              <div class="carousel-item">
+                <img src="{{producto.imagen3}}" class="d-block w-100" alt="...">
+              </div>
+              {%endif%}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+              data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+              data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+
+          {%if producto.descripcion != ""%}
+          <hr>
+          <h5 class="card-title">Description:</h5>
+          <p>{{producto.descripcion}}</p>
+          <hr>
+          {%endif%}
+          <div class="d-grid gap-2 mt-2">
+            {% comment %} TODO ingresa ultimo apostador con subasta cerrada {% endcomment %}
+            {%if producto.Activo == False and usuario == last_bid.usuario%}
+
+            <button type="button" class="btn btn-success mb-3" data-bs-toggle="tooltip" data-bs-placement="bottom"
+              data-bs-custom-class="custom-tooltip"
+              data-bs-title="The auction has been closed by the owner, you won the auction!">
+              You have won the auction for a price of: ${{producto.precio}}
+            </button>
+
+            {% comment %} ingresa ultimo apostador con subasta abierta {% endcomment %}
+            {%elif usuario == last_bid.usuario %}
+
+            <button type="button" class="btn btn-success mb-3" data-bs-toggle="tooltip" data-bs-placement="bottom"
+              data-bs-custom-class="custom-tooltip" data-bs-title="The owner has not yet closed the auction">
+              Currently bid: Your bid of ${{producto.precio}}
+            </button>
+
+
+
+            {% comment %} ingresa dueño con subasta cerrada {% endcomment %}
+            {%elif producto.Activo == False and usuario == producto.dueño %}
+            <button type="button" class="btn btn-success mb-3" data-bs-toggle="tooltip" data-bs-placement="bottom"
+              data-bs-custom-class="custom-tooltip" data-bs-title="You cannot open this auction again">You have closed the auction for a price of ${{producto.precio}}</button>
+          
+          {%endif%}
+          {% comment %} cerras div de d-grid gap-2 mt-2{% endcomment %}
+
+          {% comment %} ingresa dueño con subasta abierta {% endcomment %}
+          {%if usuario == producto.dueño and producto.Activo == True %}
+          <form action="{% url 'closeListing' producto.id %}" method="post">
+            {% csrf_token %}
+            <div class="d-grid gap-2 mt-2">
+              <button type="button" class="btn btn-warning mb-3" data-bs-placement="bottom"
+                data-bs-custom-class="custom-tooltip"
+                data-bs-title="Puedes cerrar la subasta cuando quieras haciendo click aquí" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">You have an offer for ${{producto.precio}} you can finish the auction clicking in here
+              </button>
+
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title fs-5" id="exampleModalLabel">
+                        Are you sure you want this? You will cannot open this auction again
+                      </h4>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Cancel
+                      </button>
+                      <button type="submit" class="btn btn-danger">Finish auction</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+
+
+          <!-- TODO ingresa alguien que no fue el ultimo apostador ni es dueño con subasta abierta -->
+          {%elif usuario != producto.dueño and usuario != last_bid.usuario and producto.Activo == True%}
+          <div class="d-grid gap-2 mt-2">
+            <button type="button" class="btn btn-warning mb-3" data-bs-toggle="tooltip" data-bs-placement="bottom"
+              data-bs-custom-class="custom-tooltip" data-bs-title="The owner has not yet closed the auction">
+              Currently offer: ${{producto.precio}}
+            </button>
+          </div>
+          {%endif%}
+
+          {% comment %} TODO ingresa alguien que no es el ultimo apostador ni es dueño con subasta abierta  {% endcomment %}
+          
+          {%if usuario != last_bid.usuario and usuario != producto.dueño and producto.Activo == True %}
+          <form action="{% url 'listing' producto.id %}" method="post">
+            {% csrf_token %}
+            <div class="input-group mb-3">
+              <span class="input-group-text">$</span>
+              {{oferta}}
+              <!-- Button trigger modal para pantallas desde sm-->
+              <button type="button" class="btn btn-{{outline}}success d-none d-sm-block {{disabled}}"
+                data-bs-toggle="modal" data-bs-target="#exampleModal">Place a bid</button>
+            </div>
+
+            <!-- para pantallas menores de sm -->
+            <div class="d-grid gap-2 mt-2">
+              <button type="button" class="btn btn-{{outline}}success d-block d-sm-none {{disabled}}"
+                data-bs-toggle="modal" data-bs-target="#exampleModal">Hacer oferta</button>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title fs-5" id="exampleModalLabel">
+                      Are you sure you want this?
+                    </h4>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                      Cancel
+                    </button>
+                    <button type="submit" class="btn btn-success">Place the bid!</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+          {%elif producto.Activo == False and usuario != producto.dueño and usuario != last_bid.usuario%}
+            {%if last_bid.usuario%}
+          <button type="button" class="btn btn-danger mb-3" data-bs-toggle="tooltip" data-bs-placement="bottom"
+            data-bs-custom-class="custom-tooltip" data-bs-title="{{last_bid.usuario}} won the auction">
+            The auction has closed for a price of: ${{producto.precio}}
+          </button>
+            {%else%}
+            <button type="button" class="btn btn-danger mb-3" data-bs-toggle="tooltip" data-bs-placement="bottom"
+              data-bs-custom-class="custom-tooltip" data-bs-title="The owner closed the auction without bids">
+              The auction has closed for a price of: ${{producto.precio}}
+            </button>
+            {%endif%}
+
+          {%endif%}
+        </div>
+        </div>
+        <div class="col md-6">
+          <h1 id="comment_title">Comments</h1>
+          {%for comentario in comentarios%}
+          <div class="list-group mb-2">
+            <div class="list-group-item list-group-item-action" aria-current="true">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{comentario.usuario}} commented:</h5>
+                <small>{{comentario.fecha}}</small>
+              </div>
+              <p class="mb-1">{{comentario.message}}</p>
+            </div>
+          </div>
+          {%endfor%}
+          <form action="{% url 'post_comment' producto.id %}" method="post">
+            {% csrf_token %}
+            <div class="form-floating">
+              {{commentform}}
+              <label for="floatingTextarea2">Something you want to say...</label>
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2">
+              <button type="submit" class="btn btn-dark mb-2 mt-1 {{disabled}}">comment</button>
+            </div>
+          </form>
+        </div>
+        
+      </div>
+      
+    </div>
+
+  </div>
+   </div>
+
+ </div>
+<!-- este scrip es para el tooltip de boostrap -->
+<script>
+  $(document).ready(function () {
+    $('[data-bs-toggle="tooltip"]').tooltip();
+  });
+  const myModal = document.getElementById("myModal");
+  const myInput = document.getElementById("myInput");
+
+</script>
+
+
+{% endblock %}

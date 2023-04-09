@@ -1,0 +1,53 @@
+{% extends "auctions/layout.html" %}
+
+
+{% block index %}
+<div class="container-fluid text-center">
+<h2>Active Listings</h2>
+</div>
+
+<div class="col d-sm-flex justify-content-sm-end " id="filter">
+    <form action="{% url 'categoryFilter' %}" method="POST" id="filter">
+        {% csrf_token %}
+        {{categorias}}
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-end mt-2 mb-4">
+            <input type="submit" value="Filter" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+
+
+<div class="container-fluid text-center bg-dark bg-gradient">
+    <div class="row row-cols-auto g-3">
+        {% for producto in productos%}
+        <div class="col mb-3">
+            <div class="card">
+                {%if producto.imagen %}
+                <img src="{{producto.imagen}}" alt="imagen">
+                {%else%}
+                <img src="https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1902/pavelstasevich190200120/ 124934975-no-hay-icono-de-imagen-disponible-vector-plano.jpg?ver=6"
+                    class="card-img-top" alt="imagen">
+                {%endif%}
+                <div class="card-body">
+                    <h5 class="card-title">{{producto.producto}}</h5>
+                    <p class="card-text">{{producto.descripcion}}</p>
+                    {%if producto.Activo == True%}
+                        <div class="alert alert-success" role="alert">
+                            This auction is still open
+                        </div>
+                        
+                    {%else%}
+                    <div class="alert alert-danger" role="alert">
+                        This auction is close
+                    </div>
+                    {%endif%}
+                    <p class="card-text"><small>Current price ${{producto.precio}} </small></p>
+                    <a href="{% url 'listing' producto.id %}" class="btn btn-primary">See more</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

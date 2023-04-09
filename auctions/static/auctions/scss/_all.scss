@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+
+    // background-image: repeating-linear-gradient(45deg, black, transparent 100px);
+    // background: linear-gradient(#000000, #39ff00, #000000);
+
+    // #ff006e color rojizo
+    // 00ff74 color agus
+    // si no esta activo no funciona el filtro
+    background-image: repeating-linear-gradient(360deg, #03b058, black 96px);
+    // letras en white
+}
+
+#validation{
+    color: white;
+}
+#username{
+    margin-right: 7rem;
+}
+
+
+h1,
+h2 {
+    text-align: center;
+    margin-bottom: 0;
+    color: rgb(255, 255, 255);
+    
+
+}
+
+#filter {
+    margin: 0 2rem
+}
+
+.mb-3 {
+    .card {
+        width: 18rem;
+    }
+
+}
+
+
+img {
+    max-width: 100%;
+    max-height: 10rem;
+    object-fit: contain;
+}
+
+.row {
+    justify-content: center;
+
+}
+
+.bg-gradient {
+    .row {
+        justify-content: center;
+        background-image: repeating-linear-gradient(46deg, black, transparent 48px);
+    }
+
+}
+
+#comment_title{
+    background-image: repeating-linear-gradient(171deg, black, #000000c4 11px);
+    text-align: center;
+}
+
+// forms:
+
+
+.form-control {
+    resize: none;
+}
+
+#productoForm {
+    height: 2rem;
+}
+
+#descriptionForm {
+    height: 6rem;
+}
+
+#imageForm {
+    height: 2rem;
+}
+
+
+
+
+#filter {
+    text-align: center;
+    text-transform: uppercase;
+
+    label {
+        color: white;
+    }
+
+}
+
+// categorias form 
+// text-align: center;
+// text-transform: uppercase;
+
+// label     color: greenyellow;
+
+
+// user registration
+
+p {
+    
+    margin-right: 1rem
+}
+
+a {
+    text-decoration: none;
+    color: #feff00;
+}

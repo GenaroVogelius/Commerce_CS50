@@ -1,0 +1,44 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+    <h2>Create a new listing</h2>
+    {% if message %}
+        <div>{{ message }}</div>
+    {% endif %}
+    <div class="container-fluid p-3 bg-dark bg-gradient">
+        <form action="{% url 'new' %}" method="POST" class="form">
+            {% csrf_token %}
+            <div class="form-floating mb-3">
+                    {{categorias}}
+                <label for="floatingSelect">Categoria</label>
+            </div>
+            <div class="form-group mb-3">
+                {{Formularios.producto}}
+            </div>
+            <div class="form-group mb-3">
+                {{Formularios.descripcion}}
+            </div>
+            
+            <div class="input-group mb-3">
+                <span class="input-group-text text-primary">This field is not mandatory</span>
+                {{Formularios.imagen}}
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text text-primary">This field is not mandatory</span>
+                {{Formularios.imagen2}}
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text text-primary">This field is not mandatory</span>
+                {{Formularios.imagen3}}
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">$</span>
+                {{Formularios.precio}}
+            </div>
+            <div class="d-flex justify-content-end ">
+            <input type="submit" value= "save" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+{% endblock %}

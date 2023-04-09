@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: repeating-linear-gradient(360deg, #03b058, black 96px);
+}
+
+#username {
+  margin-right: 7rem;
+}
+
+h1,
+h2 {
+  text-align: center;
+  margin-bottom: 0;
+  color: rgb(255, 255, 255);
+}
+
+#filter {
+  margin: 0 2rem;
+}
+
+.mb-3 .card {
+  width: 18rem;
+}
+
+img {
+  max-width: 100%;
+  max-height: 10rem;
+  object-fit: contain;
+}
+
+.row {
+  justify-content: center;
+}
+
+.bg-gradient .row {
+  justify-content: center;
+  background-image: repeating-linear-gradient(46deg, black, transparent 48px);
+}
+
+.form-control {
+  resize: none;
+}
+
+#productoForm {
+  height: 2rem;
+}
+
+#descriptionForm {
+  height: 6rem;
+}
+
+#imageForm {
+  height: 2rem;
+}
+
+#filter {
+  text-align: center;
+  text-transform: uppercase;
+}
+#filter label {
+  color: white;
+}
+
+p {
+  margin-right: 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: #feff00;
+}
+
+/*# sourceMappingURL=styles.css.map */

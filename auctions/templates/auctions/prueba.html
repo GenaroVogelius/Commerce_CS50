@@ -1,0 +1,74 @@
+ <div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{{producto.imagen}}" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{producto.producto}}</h5>
+        <p class="card-text">{{producto.descripcion}}</p>
+        <p class="card-text">Categoria: {{producto.categoria}}</p>
+        <p class="card-text">Dueño: {{ producto.dueño|upper }}</p>
+        <div class="row">
+           tenes que analizar si el usuario ya lo guardo o no al item en la watchlist {% 
+          <!-- <a href="{% url 'watchList'%}">
+            <button type="button" class="btn btn-outline-success">Add to WatchList</button>
+          </a> -->
+           <a href="{% url 'watchList'%}">
+            <button type="button" class="btn btn-outline-danger">remove from WatchList</button>
+          </a> 
+        </div>
+        <button type="button" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="bottom"
+          data-bs-custom-class="custom-tooltip" data-bs-title="La subasta aún no ha sido cerrada por el dueño">
+          Oferta actual: ${{producto.precio}}
+        </button>
+        
+        <div class="row">
+          <form action="{% url 'bid' user.id %}" method="post">
+            {% csrf_token %}
+            {{oferta}}
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Hacer oferta
+          </button>
+          
+          
+          
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title fs-5" id="exampleModalLabel">Estas seguro de que quieres esto?</h4>
+                </div>
+                
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                  <button type="submit" class="btn btn-success">Ofertar!</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          </form>
+        </div>
+        <form action="{% url 'post_comment' user.id %}" method="post">
+          {% csrf_token %}
+          {{commentform}}
+          <button type="submit" class="btn btn-dark">comentar</button>
+
+          <h1>
+            {{comentarios.message}}
+            Comentarios: 
+            
+            {%for comentario in comentarios%}
+              {{comentario.message}}
+              
+            {%endfor%} 
+          </h1>
+        
+
+        <!-- usa este formato para los comentarios<p class="card-text"><small class="text-muted">Oferta actual: ${{producto.precio}}</small></p> -->
+      </div>
+    </div>
+  </div>
+</div> 
