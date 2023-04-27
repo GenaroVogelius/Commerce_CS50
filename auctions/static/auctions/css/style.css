@@ -5,7 +5,7 @@
 }
 
 body {
-  background-image: repeating-linear-gradient(360deg, #03b058, black 96px);
+  background: linear-gradient(90deg, rgb(54 217 153) 0%, rgb(32 152 152) 43%, rgb(0 255 113) 100%);
 }
 
 #validation {
